@@ -1,0 +1,182 @@
+CROWNBINS SOLUTIONS KENYA
+Billing System & Website — Requirements Document
+“One man's trash is another man's treasure.”
+Prepared: 12 August 2026
+Status: Draft — for client review and sign-off
+1. Company Overview
+Company Name
+CrownBins Solutions Kenya
+Tagline
+“One man's trash is another man's treasure.”
+Mission
+To provide reliable and environmentally responsible waste collection services.
+Vision
+To transform waste management into a sustainable solution for cleaner communities.
+Services
+Residential (individual & apartment) and commercial garbage collection, twice weekly
+Bag Types
+Green, Blue, and Black bags — quality and price range differ per type
+Current Customer Base
+300+ customers, with significant growth expected
+Current Tools in Use
+Zoho One and spreadsheets (for billing/customer records)
+2. Billing System Requirements
+2.1 Objectives
+Replace the current manual/Zoho One + spreadsheet process with an integrated, automated billing system that tracks payments, generates invoices and receipts, and keeps records updated in real time — without manual re-entry after each payment.
+2.2 Who Uses the System
+Role
+Description
+Customer
+Registers/logs in, views bills, pays, downloads invoices & receipts, raises complaints, receives notifications
+Admin
+Day-to-day operations: manage customers, invoices, payments, complaints, collection schedules
+Super Admin / System Administrator
+Full system control — everything Admin can do, plus manage users & roles, permissions, system settings, and add/remove Admins
+2.3 Pricing Model
+Pricing is not fixed — each bag type (Green, Blue, Black) has a price range rather than one set price.
+Bag types and pricing are the same across residential (individual & apartment) and commercial customers.
+Customers choose their bag colour/type (Green, Blue, or Black) based on quality and price preference.
+Bag quantity is tied to collection frequency: once-per-week collection = 4 bags/month; twice-per-week collection = customer chooses between 8, 10, or 12 bags/month.
+Actual price per customer is negotiated directly with CrownBins staff.
+Customers requesting a quotation are directed via a WhatsApp button/link on the website to negotiate pricing with staff — the system does not auto-calculate quotes.
+2.4 Payment Subscription Plans
+Billing is subscription-based, not tied to a fixed short cycle — customers choose to pay every 3 months (quarterly), every 4 months, or every 6 months (semi-annually).
+The subscription interval determines when the customer's invoice is generated and becomes due.
+2.5 Payment Methods & Confirmation
+Method
+Confirmation
+Safaricom Paybill (Paybill No. + CrownBins Account No.)
+Automatic (system integration / callback)
+Safaricom Till Number
+Automatic (system integration / callback)
+Bank Transfer (any bank)
+Manually entered and marked by staff
+Cheque
+Manually entered and marked by staff
+Cash
+Manually entered and marked by staff
+M-Pesa (Paybill and Till) integration is required for automatic payment confirmation. Bank transfer is not limited to one bank — customers may pay from any bank, so the system should allow entry of the paying bank's name/reference rather than assuming Equity. Bank transfer, cheque, and cash payments are recorded and marked by staff.
+2.6 Payment Reconciliation — Matching Payments to the Correct Customer
+A payment made outside the customer's portal (e.g., paid directly via M-Pesa Paybill or Till using a phone number not registered in the system) does not automatically identify which customer it belongs to. This needs a clear process:
+“Pay Now” on the portal opens a payment method selection screen, showing all supported options (Safaricom Paybill, Safaricom Till, Bank Transfer, Cheque, Cash) so the customer chooses how they want to pay, rather than defaulting to one method.
+Preferred method — STK Push from the portal: if the customer selects M-Pesa (Paybill or Till), the system triggers an M-Pesa prompt tied to their invoice. The person completing the prompt can use any phone number (their own, a family member's, anyone paying on the customer's behalf) — the payment is still correctly linked to that customer's invoice, since it originated from their account.
+If the customer selects Bank Transfer, Cheque, or Cash, the portal displays CrownBins' payment details (bank account info, or instructions to pay at the office / to a collection agent) and the invoice remains Pending until staff confirm and mark it as paid.
+Fallback — direct Paybill/Till payments made outside the portal: the system first attempts to auto-match the payment using the paying phone number against registered customer numbers.
+If no match is found, the payment is flagged as “Unmatched” and placed in a review queue for Admin.
+Admin manually links the unmatched payment to the correct customer account by searching name, amount, date, or M-Pesa transaction code.
+Customers can also submit their M-Pesa transaction code via the portal or WhatsApp after paying directly, to speed up matching by staff.
+Once matched (automatically or manually), the invoice status updates to Paid and the receipt is generated and sent as normal.
+2.7 Invoicing
+Billing cycle: invoices generated automatically according to the customer's chosen subscription plan (every 3, 4, or 6 months) — no fixed 2-week cycle.
+Invoices marked Paid automatically once a matching payment is confirmed (never marked paid in advance).
+Invoice format: PDF, in addition to SMS / WhatsApp / email delivery of the invoice.
+Invoice fields: invoice number, customer name, date, bag type & quantity, amount, payment method, transaction ID/M-Pesa code (for Paybill/Till/bank payments), company logo and details.
+TBD — Any additional invoice fields beyond the list above — to be confirmed by client.
+2.8 Invoice Layout — Tailored from Client's Current Process
+The client's current invoicing (via Zoho One, shown in reference screenshots) uses a familiar, proven layout. The recommendation is to keep that overall structure and workflow — which staff are already used to — while tailoring the specific fields and options to how CrownBins actually operates and to the Kenyan market. This should be confirmed with the client before final build:
+Kept from the Zoho-style layout:
+Customer selector that auto-fills contact details
+Auto-generated invoice number, invoice date, and due date
+Line-item table with quantity, rate, and auto-calculated amount/total
+Notes / terms field
+Save as Draft → Save & Send workflow
+Tailored for CrownBins & the Kenyan market:
+Currency shown as KES throughout
+TBD — Whether VAT and/or KRA PIN fields are required, particularly for commercial/business customers
+Line items pre-populated from the customer's service plan (bag type — Green/Blue/Black — quantity, and subscription period) rather than free-text generic items
+Payment method field limited to CrownBins' actual methods: Safaricom Paybill (with account number), Safaricom Till Number, Bank Transfer (any bank), Cheque, Cash — with a transaction ID/M-Pesa code field for Paybill, Till, and bank payments
+Delivery built in as first-class options: SMS, WhatsApp, and email (not just email, as in generic Zoho templates)
+CrownBins branding: logo, off-white / deep charcoal / organic green palette, tagline — replacing the generic template look
+2.9 Receipts
+Receipt generated and sent automatically immediately after a payment is confirmed.
+Delivered via SMS, WhatsApp, or email — supporting the customer's preferred channel(s), which may be one or both.
+Format: PDF, plus the messaging/email text itself.
+Customers can view and download past receipts and invoices anytime from their account, to their preferred channel (WhatsApp or email).
+2.10 Reminders & Overdue Bills
+First reminder sent 1 day after the due date.
+Reminders repeat every 2 days until the bill is paid or manually marked as paid.
+No penalties for late payment — reminders only.
+2.11 Overpayments, Mistaken Payments & Refunds
+System accepts overpayments or payments made in error.
+System automatically notifies the customer of the overpayment/discrepancy.
+Resolution (refund, credit, correction) is handled through the Complaints feature or direct staff support — not automated.
+2.12 Notifications
+Payment received confirmations
+Upcoming/overdue payment reminders
+Collection reminders (e.g., “your garbage will be collected tomorrow”)
+Service updates and general announcements
+Delivered via SMS, WhatsApp, and/or email based on customer preference
+2.13 Complaints
+Customers can raise complaints (e.g., missed collection, damaged bin, billing issue) from their account.
+Admin/Super Admin can track complaint status (e.g., In Progress, Assigned, Resolved, Pending) as shown in the reference dashboards.
+2.14 Data Migration
+Existing customer and billing records currently held in Zoho One and spreadsheets will need to be exported and imported into the new system. Zoho One supports data export (CSV/API), which should make this a straightforward migration step once field mapping is confirmed.
+2.15 Reports
+TBD — Specific reports required (e.g., monthly revenue, pickups completed, overdue accounts, bag-type usage, collection performance) — to be confirmed by client. Reference dashboards show examples: revenue overview, invoices by status, collection performance, top services by revenue, and overdue invoice breakdowns.
+2.16 Reference: Dashboard Structure (from client-provided mockups)
+The following structure, drawn from the client's reference dashboards, should guide the Admin and Super Admin interface design:
+Overview cards: total customers, total invoices, total revenue, payments received, pending/outstanding amounts.
+Revenue overview chart (trend over time).
+Invoices by status (Paid, Pending, Overdue, Cancelled) — visual breakdown.
+Quick actions: Create Invoice, Add Customer, Record Payment, Schedule Collection, Generate Report.
+Recent invoices and recent complaints lists.
+Alerts & notifications panel (pending payments, missed collections, complaints needing attention).
+Super Admin additionally sees: collection performance metrics, collection-by-service-type breakdown, top services by revenue, system alerts, and System Administration tools (Users & Roles, System Settings, Integrations, Audit Logs, Backup & Restore).
+Customer dashboard: current balance, next collection date, collection plan, account status, current bill with Pay Now / View Invoice, service details, recent payments with downloadable receipts, billing history, and notifications.
+3. Website Requirements
+3.1 Branding
+Company Name
+CrownBins Solutions Kenya
+Colours
+Off-white, deep charcoal, organic green
+Logo
+Existing logo to be supplied by client
+Hero / Landing Page
+Sliding background photos of trucks and staff (photo gallery section may be simplified into this rotating hero rather than a separate gallery)
+Tagline
+“One man's trash is another man's treasure.”
+Mission
+To provide reliable and environmentally responsible waste collection services.
+Vision
+To transform waste management into a sustainable solution for cleaner communities.
+3.2 Domain & Hosting
+No domain currently registered — suggested options: crownbins.co.ke (recommended primary), crownbins.com, crownbinssolutions.co.ke, crownbinske.com, mycrownbins.co.ke.
+Hosting to be set up as part of this project.
+3.3 Service Areas
+TBD — Towns/areas currently served, and towns planned for expansion — to be confirmed by client.
+3.4 Public Site Sections
+Home — hero with rotating truck/staff imagery, tagline, mission/vision, quick links.
+Services — residential and commercial collection, bag types explained.
+Get a Quote — WhatsApp button/link connecting the visitor directly to CrownBins staff for pricing negotiation.
+Service Areas — checker showing towns currently served (and expansion areas as they're added).
+Referral Programme — details of how customers can refer others.
+Report a Missed Pickup — simple form/button for existing customers.
+About — mission, vision, tagline, company info.
+Contact — WhatsApp, phone, email, physical address.
+3.5 Customer Portal
+Customers register and log in to a personal dashboard where they can:
+View current bill and pay it online
+View and download past invoices and receipts (sent to preferred channel: WhatsApp or email)
+View their collection schedule (“next pickup” shown generally, not a specific selectable date/time slot)
+Schedule a pickup
+Raise complaints
+View notifications
+Manage their profile
+Reference layout: client-provided customer dashboard mockup (Current Balance, Next Collection, Collection Plan, Account Status cards; Current Bill with Pay Now / View Invoice; My Garbage Collection service details; Recent Payments; Billing History; Notifications feed).
+3.6 Admin Website Management
+Website content (text, images, service area list, etc.) will be managed directly by the client, acting as System Administrator — the CMS/admin interface should be simple enough for non-technical, day-to-day updates.
+Admin can assign trucks to scheduled pickups.
+Collection staff (drivers) are not permanent/system users — they report back to the office; no field mobile app is required at this stage.
+4. Open Items — Pending Client Confirmation
+The following items are still to be confirmed before finalising design/build in these areas:
+Towns/areas currently served and planned expansion towns.
+Specific reports required by the business (beyond the reference dashboard examples).
+Any additional fields to include on invoices/receipts beyond the confirmed core list.
+5. Next Steps
+Client reviews this document and confirms/adjusts any details.
+Client fills in the open items in Section 4.
+Domain registration and hosting setup.
+Wireframes/UI design for website and portal, based on branding and reference dashboards.
+Development of billing system (invoicing, payments, Safaricom Till integration, notifications).
+Data migration planning from Zoho One / spreadsheets.
+Testing and client sign-off before launch.

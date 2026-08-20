@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrownBins Solutions Kenya | Professional Waste Collection & Billing</title>
+  <meta name="description" content="Reliable, environmentally responsible residential and commercial garbage collection in Nairobi and Kiambu. Safaricom M-Pesa billing, color-coded bags, and automated collection management.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboards.css">
+</head>
+<body>
+
+  <!-- Top Demo / Role Switcher Header -->
+  <div class="demo-role-banner">
+    <div class="role-banner-left">
+      <span style="font-weight: 700; color: #86EFAC;">CrownBins Kenya System:</span>
+      <span>Active Mode:</span>
+      <span id="active-role-badge" class="role-pill role-pill-visitor">VISITOR</span>
+    </div>
+    <div class="role-banner-right">
+      <label for="global-role-switcher" style="font-size: 12px; color: #CBD5E1;">Switch View / Role:</label>
+      <select id="global-role-switcher" class="role-select-box">
+        <option value="visitor">🌐 Public Website (Visitor)</option>
+        <option value="customer">👤 Customer Portal (John Kamau)</option>
+        <option value="admin">💼 Admin Hub (Operations & Zoho Invoicing)</option>
+        <option value="super_admin">⚡ Super Admin (System & Migration)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Website Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo" onclick="window.app.setRoleDirectly('visitor'); return false;">
+        <div class="logo-icon-box">CB</div>
+        <div class="brand-text-col">
+          <span class="brand-title">CrownBins Solutions</span>
+          <span class="brand-sub">Waste Management Kenya</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="nav-links-menu">
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#bag-tiers" class="nav-link">Bag Tiers</a></li>
+        <li><a href="#coverage" class="nav-link">Service Areas</a></li>
+        <li><a href="#quote-calculator" class="nav-link">Get a Quote</a></li>
+        <li><a href="#referral" class="nav-link">Referral</a></li>
+        <li><a href="#missed-pickup" class="nav-link">Report Missed Pickup</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline btn-sm" onclick="window.app.setRoleDirectly('customer')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Customer Portal
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="window.app.setRoleDirectly('admin')">
+          Admin Login
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 1. PUBLIC WEBSITE VIEW                                                    -->
+  <!-- ========================================================================= -->
+  <main id="public-website-view">
+    
+    <!-- Hero Section with Rotating Slider -->
+    <section class="hero-section">
+      <div class="hero-slider-container">
+        <div class="hero-slide hero-slide-1 active"></div>
+        <div class="hero-slide hero-slide-2"></div>
+      </div>
+      <div class="hero-overlay-gradient"></div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>🌱</span> Reliable & Eco-Friendly Waste Collection
+          </div>
+          <h1 class="hero-title">Cleaner Communities, Reliable Waste Collection.</h1>
+          <p class="hero-tagline">“One man's trash is another man's treasure.”</p>
+          <p class="hero-desc">
+            CrownBins Solutions Kenya provides dependable twice-weekly residential and commercial waste collection across Nairobi, Kiambu, and surrounding areas. High-quality color-coded bags, seamless M-Pesa billing, and dedicated truck routes.
+          </p>
+          <div class="hero-buttons">
+            <a href="#quote-calculator" class="btn btn-primary btn-lg">
+              Get Instant Quote & Negotiate
+            </a>
+            <a href="#coverage" class="btn btn-outline btn-lg" style="color: #FFFFFF; border-color: rgba(255,255,255,0.4);">
+              Check Your Estate
+            </a>
+            <a href="#missed-pickup" class="btn btn-ghost btn-lg" style="color: #86EFAC;">
+              Report Missed Pickup &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-controls">
+        <div class="hero-dots">
+          <div class="hero-dot active"></div>
+          <div class="hero-dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fast Service Area Coverage Bar -->
+    <div class="coverage-fast-bar" id="coverage-bar">
+      <div class="container fast-bar-inner">
+        <div class="fast-bar-label">
+          <span>📍</span>
+          <span>Check if CrownBins collects in your neighborhood:</span>
+        </div>
+        <div class="fast-search-wrapper">
+          <span class="fast-search-icon">🔍</span>
+          <input type="text" id="area-search-input" class="fast-search-input" placeholder="Type your town or estate (e.g. Kilimani, Ruiru, Westlands, Karen)..." autocomplete="off">
+          <div class="search-results-dropdown" id="area-search-results"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services & Waste Collection Section -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Our Services</span>
+          <h2 class="section-title">Twice-Weekly Reliable Waste Collection</h2>
+          <p class="section-desc">We tailor our garbage collection services to individual homes, residential apartments, gated communities, and commercial business complexes.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Residential Collection -->
+          <div class="service-card">
+            <div class="service-icon-box">🏡</div>
+            <h3>Residential (Individual Homes)</h3>
+            <p>Scheduled twice-weekly door pickup for stand-alone houses, townhouses, and villas. Color-coded heavy-duty bags delivered directly to your doorstep.</p>
+            <ul class="service-features">
+              <li>Twice-weekly scheduled collection</li>
+              <li>Free monthly bag allocation (Green/Blue)</li>
+              <li>SMS & WhatsApp arrival reminders</li>
+              <li>Quarterly or semi-annual subscription plans</li>
+            </ul>
+            <a href="#quote-calculator" class="btn btn-outline btn-block">Get Residential Quote</a>
+          </div>
+
+          <!-- Apartment Complexes -->
+          <div class="service-card">
+            <div class="service-icon-box">🏢</div>
+            <h3>Apartment Buildings & HOAs</h3>
+            <p>Customized bulk collection solutions for residential complexes, caretaker management, and estate associations with consolidated billing.</p>
+            <ul class="service-features">
+              <li>Dedicated bin stations & regular sanitization</li>
+              <li>Flexible bag quantities (8, 10, 12 bags/unit)</li>
+              <li>Direct caretaker & estate manager coordination</li>
+              <li>Single consolidated invoicing or per-tenant billing</li>
+            </ul>
+            <a href="#quote-calculator" class="btn btn-outline btn-block">Get Apartment Quote</a>
+          </div>
+
+          <!-- Commercial Collection -->
+          <div class="service-card">
+            <div class="service-icon-box">🏬</div>
+            <h3>Commercial & Office Waste</h3>
+            <p>Reliable commercial waste management for retail stores, medical clinics, offices, restaurants, and shopping complexes.</p>
+            <ul class="service-features">
+              <li>High-volume heavy-duty Black bags</li>
+              <li>Flexible pickup times to avoid business rush</li>
+              <li>KRA PIN compliant invoices and official receipts</li>
+              <li>Dedicated account manager support</li>
+            </ul>
+            <a href="#quote-calculator" class="btn btn-outline btn-block">Get Commercial Quote</a>
+          </div>
+        </div>
+
+        <!-- Bag Tiers Explained (Requirements 2.3) -->
+        <div class="section-header" id="bag-tiers" style="margin-top: 40px;">
+          <span class="section-subtitle">Bag Types & Pricing Tiers</span>
+          <h2 class="section-title">Choose Your Bag Color & Volume</h2>
+          <p class="section-desc">Each bag type is built for specific waste needs with tiered price ranges. Actual rates are negotiated based on quantity and subscription interval.</p>
+        </div>
+
+        <div class="bag-tiers-grid">
+          <!-- Green Bag -->
+          <div class="bag-card bag-card-green">
+            <span class="bag-badge bag-badge-green">Premium Heavy-Duty</span>
+            <h4>Organic Green Bag</h4>
+            <div class="bag-price-range">KES 1,200 - 1,800 / Month</div>
+            <p>100% Recyclable, tear-resistant heavy duty bags engineered for mixed domestic and organic household waste.</p>
+            <div class="bag-specs">
+              <div class="bag-specs-row"><span>Material:</span><strong>High-Density Recyclable</strong></div>
+              <div class="bag-specs-row"><span>Standard Allocations:</span><strong>8, 10, or 12 bags/mo</strong></div>
+              <div class="bag-specs-row"><span>Ideal For:</span><strong>Residences & Green Homes</strong></div>
+            </div>
+            <a href="#quote-calculator" class="btn btn-primary btn-block">Select Green Bags</a>
+          </div>
+
+          <!-- Blue Bag -->
+          <div class="bag-card bag-card-blue">
+            <span class="bag-badge bag-badge-blue">Standard Durable</span>
+            <h4>Standard Blue Bag</h4>
+            <div class="bag-price-range">KES 900 - 1,400 / Month</div>
+            <p>Reinforced medium-density polyethylene bags for standard domestic and dry apartment waste streams.</p>
+            <div class="bag-specs">
+              <div class="bag-specs-row"><span>Material:</span><strong>Durable Polyethylene</strong></div>
+              <div class="bag-specs-row"><span>Standard Allocations:</span><strong>8 or 10 bags/mo</strong></div>
+              <div class="bag-specs-row"><span>Ideal For:</span><strong>Apartments & Estates</strong></div>
+            </div>
+            <a href="#quote-calculator" class="btn btn-outline btn-block">Select Blue Bags</a>
+          </div>
+
+          <!-- Black Bag -->
+          <div class="bag-card bag-card-black">
+            <span class="bag-badge bag-badge-black">Commercial General</span>
+            <h4>Economy Black Bag</h4>
+            <div class="bag-price-range">KES 700 - 1,100 / Month</div>
+            <p>Standard industrial grade black bags suitable for high-volume general and non-hazardous business waste.</p>
+            <div class="bag-specs">
+              <div class="bag-specs-row"><span>Material:</span><strong>Industrial Polyethylene</strong></div>
+              <div class="bag-specs-row"><span>Standard Allocations:</span><strong>8, 12, or 24 bags/mo</strong></div>
+              <div class="bag-specs-row"><span>Ideal For:</span><strong>Offices, Shops & Clinics</strong></div>
+            </div>
+            <a href="#quote-calculator" class="btn btn-secondary btn-block">Select Black Bags</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interactive Quote Calculator & Direct WhatsApp Negotiation -->
+    <section class="section section-alt" id="quote-calculator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Custom Quotations</span>
+          <h2 class="section-title">Calculate Your Estimate & Negotiate on WhatsApp</h2>
+          <p class="section-desc">Pricing is customized to your bag selection, volume, and subscription cycle. Generate an estimate below and chat directly with CrownBins staff to finalize your rate.</p>
+        </div>
+
+        <div style="max-width: 760px; margin: 0 auto; background: #FFFFFF; border-radius: var(--radius-lg); padding: 36px; border: 1px solid var(--color-border); box-shadow: var(--shadow-md);">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="quote-bag-type">Select Bag Type / Quality</label>
+              <select id="quote-bag-type" class="form-select">
+                <option value="green">🟢 Organic Green Bag (Premium Heavy-Duty)</option>
+                <option value="blue">🔵 Standard Blue Bag (Durable)</option>
+                <option value="black">⚫ Economy Black Bag (General / Commercial)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="quote-bag-qty">Collection Frequency & Bag Quantity</label>
+              <select id="quote-bag-qty" class="form-select">
+                <option value="4">1x Weekly - 4 Bags / Month</option>
+                <option value="8" selected>2x Weekly - 8 Bags / Month (Standard)</option>
+                <option value="10">2x Weekly - 10 Bags / Month (Large Family)</option>
+                <option value="12">2x Weekly - 12 Bags / Month (High Volume)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="quote-plan">Subscription Billing Cycle</label>
+              <select id="quote-plan" class="form-select">
+                <option value="3">3 Months (Quarterly Plan)</option>
+                <option value="4">4 Months (5% Loyalty Discount)</option>
+                <option value="6">6 Months (10% Semi-Annual Discount)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="quote-location">Your Location / Estate</label>
+              <input type="text" id="quote-location" class="form-control" placeholder="e.g. Kilimani, Ruiru, Westlands, Karen" value="Kilimani, Nairobi">
+            </div>
+          </div>
+
+          <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-md); padding: 20px; margin: 24px 0; text-align: center;">
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #166534; letter-spacing: 0.5px;">Estimated Subscription Range</div>
+            <div id="quote-estimated-price" style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: #15803D; margin: 6px 0;">
+              KES 4,000 - 5,200 for 3 Months
+            </div>
+            <p style="font-size: 12px; color: #166534;">Final pricing is confirmed with our operations team via WhatsApp based on your exact estate route.</p>
+          </div>
+
+          <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+            <a id="quote-whatsapp-btn" href="https://api.whatsapp.com/send?phone=254712345678" target="_blank" class="btn btn-whatsapp btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.127-.521-1.832-.759-3.007-2.617-3.098-2.738-.09-.12-1.47-1.956-1.47-3.731 0-1.775.927-2.651 1.258-3.01.33-.359.72-.449.96-.449.24 0 .48.002.69.012.22.01.514-.084.804.612.3.72.99 2.42 1.079 2.6.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.21-.378.47-.54.63-.18.18-.37.38-.16.74.21.36.93 1.536 2 2.49 1.38 1.23 2.54 1.61 2.9 1.79.36.18.57.15.78-.09.21-.24.9-1.05 1.14-1.41.24-.36.48-.3.81-.18.33.12 2.1 1 2.46 1.17.36.18.6.27.69.42.09.15.09.87-.05 1.275z"/></svg>
+              Chat on WhatsApp to Finalize Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Areas Section -->
+    <section class="section" id="coverage">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Coverage Map</span>
+          <h2 class="section-title">Towns & Estates We Currently Serve</h2>
+          <p class="section-desc">We operate dedicated collection routes across Nairobi and Kiambu counties, with active expansion into Machakos, Nakuru, and Eldoret.</p>
+        </div>
+
+        <div class="service-areas-grid" id="service-areas-grid">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+          <p style="font-size: 14px; color: var(--color-text-muted); margin-bottom: 12px;">Don't see your estate listed?</p>
+          <button class="btn btn-outline" onclick="window.app.openExpansionVoteModal()">Request Service in Your Town / Estate</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Referral Programme & Community Eco Impact -->
+    <section class="section section-alt" id="referral">
+      <div class="container">
+        <div class="referral-impact-grid">
+          
+          <!-- Referral Card -->
+          <div class="feature-box-card">
+            <span class="section-subtitle">Referral Programme</span>
+            <h3 style="font-size: 24px; margin-bottom: 12px;">Refer a Neighbor, Get Free Collection!</h3>
+            <p style="color: var(--color-text-muted); font-size: 14px; margin-bottom: 20px;">
+              Share CrownBins with neighbors, estate caretakers, or friends. When they subscribe, you earn <strong>1 Free Month of Garbage Collection</strong> or a free premium bag upgrade!
+            </p>
+            <div style="background: #F8FAFC; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+              <label class="form-label" style="font-size: 11px;">Your Unique Referral Link / Code:</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="referral-code-input" class="form-control" value="https://crownbins.co.ke/join?ref=KAMAU24" readonly>
+                <button class="btn btn-primary btn-sm" id="btn-copy-referral">Copy</button>
+              </div>
+            </div>
+            <div style="font-size: 12px; color: var(--color-green-primary); font-weight: 600;">
+              ✓ Unlimited referrals &bull; Applied directly to your next invoice cycle
+            </div>
+          </div>
+
+          <!-- Impact Metrics -->
+          <div class="feature-box-card">
+            <span class="section-subtitle">Environmental Impact</span>
+            <h3 style="font-size: 24px; margin-bottom: 12px;">Sustainable Waste Management</h3>
+            <p style="color: var(--color-text-muted); font-size: 14px;">
+              Our mission is to transform waste management into a sustainable solution for cleaner communities across Kenya.
+            </p>
+            <div class="impact-stats-grid">
+              <div class="impact-stat-tile">
+                <div class="impact-stat-number">1,450+</div>
+                <div class="impact-stat-label">Tons of Waste Safely Diverted</div>
+              </div>
+              <div class="impact-stat-tile">
+                <div class="impact-stat-number">300+</div>
+                <div class="impact-stat-label">Active Residences & Businesses</div>
+              </div>
+              <div class="impact-stat-tile">
+                <div class="impact-stat-number">98.4%</div>
+                <div class="impact-stat-label">On-Time Route Completion Rate</div>
+              </div>
+              <div class="impact-stat-tile">
+                <div class="impact-stat-number">100%</div>
+                <div class="impact-stat-label">Recyclable Bag Material</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Report a Missed Pickup Quick Form -->
+    <section class="section" id="missed-pickup">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Customer Care</span>
+          <h2 class="section-title">Report a Missed Pickup</h2>
+          <p class="section-desc">Did our truck miss your collection day? Submit this fast form and our dispatch office will re-route a collection crew within hours.</p>
+        </div>
+
+        <div class="missed-pickup-box">
+          <form id="missed-pickup-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="mp-name">Full Name / Customer Name *</label>
+                <input type="text" id="mp-name" class="form-control" placeholder="e.g. John Kamau" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="mp-phone">Phone Number (M-Pesa or Contact) *</label>
+                <input type="tel" id="mp-phone" class="form-control" placeholder="+254 7XX XXX XXX" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="mp-estate">Estate Name & Specific House/Apartment No. *</label>
+              <input type="text" id="mp-estate" class="form-control" placeholder="e.g. Kilimani, Denis Pritt Rd, Greenview Heights Apt 4B" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="mp-notes">Additional Details (Bag Color, Gate Placement, Time Placed)</label>
+              <textarea id="mp-notes" class="form-control" rows="3" placeholder="e.g. 2 Green bags placed by the front gate at 7:30 AM..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Submit Missed Pickup Report</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- About & Contact Sections -->
+    <section class="section section-alt" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <span class="section-subtitle">About CrownBins</span>
+            <h2 class="section-title">Transforming Waste Management in Kenya</h2>
+            <p style="margin-bottom: 16px; font-size: 15px; color: var(--color-text-muted);">
+              <strong>CrownBins Solutions Kenya</strong> is an integrated environmental sanitation and waste management enterprise founded on the principle that responsible waste handling is essential for healthy, thriving Kenyan communities.
+            </p>
+            <div style="margin-bottom: 20px; padding: 18px; background: #FFFFFF; border-radius: var(--radius-md); border-left: 4px solid var(--color-green-primary);">
+              <h4 style="font-size: 15px; margin-bottom: 4px;">Our Mission</h4>
+              <p style="font-size: 13px; color: var(--color-text-muted);">To provide reliable and environmentally responsible waste collection services.</p>
+            </div>
+            <div style="padding: 18px; background: #FFFFFF; border-radius: var(--radius-md); border-left: 4px solid var(--color-charcoal-dark);">
+              <h4 style="font-size: 15px; margin-bottom: 4px;">Our Vision</h4>
+              <p style="font-size: 13px; color: var(--color-text-muted);">To transform waste management into a sustainable solution for cleaner communities.</p>
+            </div>
+          </div>
+          <div>
+            <img src="assets/images/hero_truck.jpg" alt="CrownBins Collection Crew in Nairobi" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Get In Touch</span>
+          <h2 class="section-title">Contact CrownBins Solutions Kenya</h2>
+          <p class="section-desc">Our customer support and route dispatch team are available 6 days a week.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card">
+            <h3 style="color: #FFFFFF; font-size: 22px; margin-bottom: 24px;">CrownBins Operations Desk</h3>
+            
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <div class="contact-text">
+                <h4>Physical Headquarters</h4>
+                <p>CrownBins Plaza, 3rd Floor, Mombasa Road / Enterprise Rd Junction, Industrial Area, Nairobi, Kenya</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <div class="contact-text">
+                <h4>Telephone & Customer Support</h4>
+                <p>+254 712 345 678<br>+254 733 987 654</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-icon">💬</span>
+              <div class="contact-text">
+                <h4>Official WhatsApp Desk</h4>
+                <p>+254 712 345 678</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-icon">✉️</span>
+              <div class="contact-text">
+                <h4>Email Inquiries</h4>
+                <p>info@crownbins.co.ke<br>support@crownbins.co.ke</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+            <h3 style="font-size: 20px; margin-bottom: 20px;">Send Us a Message</h3>
+            <form onsubmit="event.preventDefault(); window.app.showToast('Message Sent', 'Thank you! A CrownBins representative will call you.', 'success'); this.reset();">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Your Name</label>
+                  <input type="text" class="form-control" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" placeholder="+254 7XX XXX XXX" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="name@example.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Message or Inquiry</label>
+                <textarea class="form-control" rows="4" placeholder="How can CrownBins help you today?"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>CrownBins Solutions Kenya</h3>
+            <p class="footer-tagline">“One man's trash is another man's treasure.”</p>
+            <p style="font-size: 13px; color: #94A3B8; max-width: 320px;">
+              Providing reliable, sustainable, and transparent residential & commercial garbage collection across Kenya.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#services">Our Services</a></li>
+              <li><a href="#bag-tiers">Bag Quality Tiers</a></li>
+              <li><a href="#coverage">Coverage Checker</a></li>
+              <li><a href="#quote-calculator">Get a Quote</a></li>
+              <li><a href="#referral">Referral Programme</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Customer Portal</h4>
+            <ul class="footer-links">
+              <li><a href="#" onclick="window.app.setRoleDirectly('customer'); return false;">Log In to Account</a></li>
+              <li><a href="#" onclick="window.app.setRoleDirectly('customer'); return false;">Pay via M-Pesa</a></li>
+              <li><a href="#" onclick="window.app.setRoleDirectly('customer'); return false;">Download PDF Receipts</a></li>
+              <li><a href="#missed-pickup">Report Missed Pickup</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Payment Methods</h4>
+            <p style="font-size: 12px; color: #94A3B8; margin-bottom: 8px;">
+              <strong>Safaricom M-Pesa Paybill:</strong> 522522<br>
+              <strong>M-Pesa Till:</strong> 8472910<br>
+              <strong>Bank Transfer:</strong> Any Commercial Bank<br>
+              <strong>KRA PIN:</strong> P051982743X
+            </p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 CrownBins Solutions Kenya Ltd. All Rights Reserved. Designed to exact client specifications.
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 2. CUSTOMER SELF-SERVICE PORTAL                                          -->
+  <!-- ========================================================================= -->
+  <main id="customer-portal-view" style="display: none;">
+    <div class="container portal-wrapper">
+      
+      <!-- Customer Header Bar -->
+      <div class="portal-header-card">
+        <div class="portal-user-info">
+          <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-green-primary); letter-spacing: 0.5px;">Customer Self-Service Portal</span>
+          <h2>Welcome back, <span id="portal-cust-name">John Kamau Njoroge</span>!</h2>
+          <div class="portal-user-meta">
+            <span id="portal-cust-plan-badge" class="badge badge-info">Residential • 3-Month Plan</span>
+            <span>ID: <strong>CUST-001</strong></span>
+            <span>Nairobi Route (Kilimani)</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <span id="portal-account-status" class="status-pill status-pill-warning">Active (Payment Due)</span>
+          <button class="btn btn-outline btn-sm" onclick="window.app.setRoleDirectly('visitor')">Sign Out / Back to Home</button>
+        </div>
+      </div>
+
+      <!-- Key Metric Overview Cards -->
+      <div class="metrics-grid">
+        <div class="metric-tile highlight-warning">
+          <div class="metric-label">Current Balance Due</div>
+          <div class="metric-value" id="portal-balance-amount">KES 4,500</div>
+          <div class="metric-sub">Subscription Cycle 2026</div>
+        </div>
+        <div class="metric-tile highlight-green">
+          <div class="metric-label">Next Collection Day</div>
+          <div class="metric-value" id="portal-next-collection" style="font-size: 20px; color: var(--color-green-primary);">2026-08-21 (Friday)</div>
+          <div class="metric-sub">07:30 AM - 10:30 AM Morning Route</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Assigned Bag Tier</div>
+          <div class="metric-value" id="portal-bag-type" style="font-size: 18px;">🟢 Organic Green</div>
+          <div class="metric-sub">Premium Heavy-Duty Recyclable</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Bag Volume & Frequency</div>
+          <div class="metric-value" id="portal-bag-qty" style="font-size: 18px;">8 Bags / Month</div>
+          <div class="metric-sub">Twice-weekly scheduled pickup</div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs in Portal -->
+      <div class="dashboard-nav-tabs">
+        <button class="dashboard-tab-item portal-nav-item active" data-tab="overview" onclick="window.customerPortal.switchTab('overview')">
+          <span>💳 Current Bill & Overview</span>
+        </button>
+        <button class="dashboard-tab-item portal-nav-item" data-tab="invoices" onclick="window.customerPortal.switchTab('invoices')">
+          <span>📄 Past Invoices & PDF Receipts</span>
+        </button>
+        <button class="dashboard-tab-item portal-nav-item" data-tab="schedule" onclick="window.customerPortal.switchTab('schedule')">
+          <span>🚛 Collection Calendar</span>
+        </button>
+        <button class="dashboard-tab-item portal-nav-item" data-tab="complaints" onclick="window.customerPortal.switchTab('complaints')">
+          <span>⚠️ Support Desk & Complaints</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Current Bill -->
+      <div class="portal-tab-pane tab-pane active" id="portal-tab-overview">
+        <div class="current-bill-card" id="portal-current-bill-card">
+          <!-- Populated by customerPortal.renderCurrentBill() -->
+        </div>
+      </div>
+
+      <!-- Tab 2: Invoices & Receipts Table -->
+      <div class="portal-tab-pane tab-pane" id="portal-tab-invoices">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 style="font-size: 18px;">Your Billing History & Receipts</h3>
+          <span style="font-size: 12px; color: var(--color-text-muted);">Invoices and Receipts are available for PDF download and WhatsApp sharing anytime.</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Issue Date</th>
+                <th>Coverage Period</th>
+                <th>Amount (KES)</th>
+                <th>Status</th>
+                <th>M-Pesa / Ref</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="portal-invoices-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: Collection Schedule -->
+      <div class="portal-tab-pane tab-pane" id="portal-tab-schedule">
+        <div id="portal-schedule-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Tab 4: Complaints & Service Tickets -->
+      <div class="portal-tab-pane tab-pane" id="portal-tab-complaints">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div>
+            <h3 style="font-size: 18px;">Service Support Desk</h3>
+            <p style="font-size: 13px; color: var(--color-text-muted);">Raise issues regarding missed collections, bin damage, billing discrepancies, or overpayments.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="window.customerPortal.openComplaintModal()">+ Raise New Complaint</button>
+        </div>
+
+        <div id="portal-complaints-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 3. ADMIN & SUPER ADMIN OPERATIONS HUB                                    -->
+  <!-- ========================================================================= -->
+  <main id="admin-portal-view" style="display: none;">
+    <div class="container portal-wrapper">
+      
+      <!-- Admin Top Header Card -->
+      <div class="portal-header-card">
+        <div>
+          <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #D97706; letter-spacing: 0.5px;">CrownBins Operations & Billing Engine</span>
+          <h2>Admin Management Dashboard</h2>
+          <div class="portal-user-meta">
+            <span>Logged in as: <strong>CrownBins System Administrator</strong></span>
+            <span>Branch: <strong>Nairobi Headquarters</strong></span>
+            <span class="badge badge-success">System Online &bull; M-Pesa Gateway Active</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn btn-primary btn-sm" onclick="window.adminPortal.openInvoiceModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Create Zoho Invoice (KES)
+          </button>
+          <button class="btn btn-outline btn-sm super-admin-only" onclick="window.adminPortal.exportCSV()">
+            Export Customer CSV (Zoho One)
+          </button>
+          <button class="btn btn-outline btn-sm" onclick="window.app.setRoleDirectly('visitor')">
+            Exit Admin
+          </button>
+        </div>
+      </div>
+
+      <!-- High-Level Operational Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-tile highlight-green">
+          <div class="metric-label">Total Active Customers</div>
+          <div class="metric-value" id="admin-metric-customers">300+</div>
+          <div class="metric-sub">Residential & Commercial</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Total Invoices Issued</div>
+          <div class="metric-value" id="admin-metric-invoices">418</div>
+          <div class="metric-sub">Active Cycle</div>
+        </div>
+        <div class="metric-tile highlight-green">
+          <div class="metric-label">Total Revenue Generated</div>
+          <div class="metric-value" id="admin-metric-revenue">KES 1,842,500</div>
+          <div class="metric-sub">All Subscriptions</div>
+        </div>
+        <div class="metric-tile">
+          <div class="metric-label">Payments Confirmed</div>
+          <div class="metric-value" id="admin-metric-paid">KES 1,620,000</div>
+          <div class="metric-sub">Auto & Manually Reconciled</div>
+        </div>
+        <div class="metric-tile highlight-warning">
+          <div class="metric-label">Outstanding / Overdue</div>
+          <div class="metric-value" id="admin-metric-pending">KES 222,500</div>
+          <div class="metric-sub">Overdue Reminders Active</div>
+        </div>
+        <div class="metric-tile highlight-purple">
+          <div class="metric-label">Unmatched M-Pesa Queue</div>
+          <div class="metric-value" id="admin-metric-unmatched" style="color: #7C3AED;">3 Action Needed</div>
+          <div class="metric-sub">Direct Paybill/Till transactions</div>
+        </div>
+      </div>
+
+      <!-- Admin Navigation Tabs -->
+      <div class="dashboard-nav-tabs">
+        <button class="dashboard-tab-item admin-nav-item active" data-tab="invoices" onclick="window.adminPortal.switchTab('invoices')">
+          <span>📊 Invoices & Revenue</span>
+        </button>
+        <button class="dashboard-tab-item admin-nav-item" data-tab="reconciliation" onclick="window.adminPortal.switchTab('reconciliation')">
+          <span>🔄 M-Pesa Reconciliation Queue</span>
+        </button>
+        <button class="dashboard-tab-item admin-nav-item" data-tab="routes" onclick="window.adminPortal.switchTab('routes')">
+          <span>🚛 Truck & Route Dispatch</span>
+        </button>
+        <button class="dashboard-tab-item admin-nav-item" data-tab="customers" onclick="window.adminPortal.switchTab('customers')">
+          <span>👥 Customer Directory (300+)</span>
+        </button>
+        <button class="dashboard-tab-item admin-nav-item" data-tab="complaints" onclick="window.adminPortal.switchTab('complaints')">
+          <span>⚠️ Complaints Desk</span>
+        </button>
+        <button class="dashboard-tab-item admin-nav-item super-admin-only" data-tab="migration" onclick="window.adminPortal.switchTab('migration')">
+          <span>⚡ Super Admin & Migration</span>
+        </button>
+      </div>
+
+      <!-- Admin Tab 1: Invoices Overview -->
+      <div class="admin-tab-pane tab-pane active" id="admin-tab-invoices">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h3 style="font-size: 18px;">Recent Invoices (Zoho Engine Layout)</h3>
+            <p style="font-size: 12px; color: var(--color-text-muted);">Automated generation based on 3, 4, or 6 month subscriptions. Currency: KES.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="window.adminPortal.openInvoiceModal()">+ New Invoice</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Customer Name</th>
+                <th>Date</th>
+                <th>Due Date</th>
+                <th>Total (KES)</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-recent-invoices-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Admin Tab 2: Reconciliation Queue -->
+      <div class="admin-tab-pane tab-pane" id="admin-tab-reconciliation">
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-md); padding: 18px; margin-bottom: 20px;">
+          <h4 style="font-size: 15px; color: #166534; margin-bottom: 6px;">Payment Reconciliation Process (Requirements 2.6)</h4>
+          <p style="font-size: 13px; color: #15803d;">
+            When a customer pays outside the portal via direct M-Pesa Till or Paybill using an unregistered number, the payment appears here as <strong>Unmatched</strong>. Staff can search and match the code to the customer account, which instantly marks the invoice <strong>Paid</strong> and dispatches the official receipt.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Transaction Code</th>
+                <th>Payment Channel</th>
+                <th>Sender Name & Phone</th>
+                <th>Amount</th>
+                <th>Date / Time</th>
+                <th>Suspected Account</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-reconciliation-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Admin Tab 3: Truck & Route Dispatch -->
+      <div class="admin-tab-pane tab-pane" id="admin-tab-routes">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h3 style="font-size: 18px;">Truck Fleet & Route Assignment</h3>
+            <p style="font-size: 12px; color: var(--color-text-muted);">Assign collection trucks and drivers to town routes and schedule days.</p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Service Area / Zone</th>
+                <th>County</th>
+                <th>Coverage Status</th>
+                <th>Collection Days</th>
+                <th>Assigned Truck & Driver</th>
+              </tr>
+            </thead>
+            <tbody id="admin-truck-routes-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Admin Tab 4: Customer Directory -->
+      <div class="admin-tab-pane tab-pane" id="admin-tab-customers">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h3 style="font-size: 18px;">Customer Master Records</h3>
+            <p style="font-size: 12px; color: var(--color-text-muted);">Directory of all 300+ residential and commercial subscribers.</p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Phone</th>
+                <th>Estate / Location</th>
+                <th>Bag Tier</th>
+                <th>Plan</th>
+                <th>Balance</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-customers-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Admin Tab 5: Complaints Desk -->
+      <div class="admin-tab-pane tab-pane" id="admin-tab-complaints">
+        <div style="margin-bottom: 16px;">
+          <h3 style="font-size: 18px;">Customer Complaints & Support Tickets</h3>
+          <p style="font-size: 12px; color: var(--color-text-muted);">Track and resolve missed pickups, bin replacements, and overpayment claims.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Customer</th>
+                <th>Category</th>
+                <th>Subject & Details</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Resolve Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-complaints-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Admin Tab 6: Super Admin & Data Migration Hub -->
+      <div class="admin-tab-pane tab-pane super-admin-only" id="admin-tab-migration">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 30px;">
+          
+          <!-- Data Migration (Zoho One & CSV) -->
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 24px;">
+            <h4 style="font-size: 16px; margin-bottom: 10px;">Zoho One & Excel Data Migration (Section 2.14)</h4>
+            <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 18px;">
+              Import existing customer records from Zoho One CSV export, or backup the current system to CSV.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <button class="btn btn-outline" onclick="window.adminPortal.exportCSV()">Export All Customers & Invoices (CSV)</button>
+              <label class="btn btn-primary" style="cursor: pointer;">
+                Import Customers from CSV / Zoho One
+                <input type="file" accept=".csv" style="display: none;" onchange="window.adminPortal.handleCSVUpload(this)">
+              </label>
+            </div>
+          </div>
+
+          <!-- CMS Content & Bag Pricing Editor -->
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 24px;">
+            <h4 style="font-size: 16px; margin-bottom: 10px;">CMS Website Management (Section 3.6)</h4>
+            <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 12px;">
+              Update public website taglines, mission statement, and manage towns served.
+            </p>
+            <div id="cms-service-areas-list" class="cms-areas-wrap">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Audit Log Window -->
+        <h4 style="font-size: 16px; margin-bottom: 10px;">System Audit & Transaction Logs (Section 2.16)</h4>
+        <div class="audit-logs-box" id="admin-audit-logs-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODALS & DIALOGS                                                          -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. Customer Payment Modal (STK Push, Till, Paybill, Bank) -->
+  <div class="modal-backdrop" id="payment-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Settle Invoice Payment</h3>
+          <span style="font-size: 12px; color: var(--color-text-muted);">Invoice: <strong id="modal-pay-inv-id">INV-2026-0842</strong> &bull; Amount: <strong id="modal-pay-amount" style="color: var(--color-green-primary);">KES 4,500</strong></span>
+        </div>
+        <button class="modal-close-btn" onclick="window.customerPortal.closePaymentModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Payment Tabs -->
+        <div class="payment-tabs">
+          <button class="pay-tab-btn active" data-tab="stk" onclick="window.customerPortal.selectPaymentTab('stk')">📲 M-Pesa STK Push</button>
+          <button class="pay-tab-btn" data-tab="paybill" onclick="window.customerPortal.selectPaymentTab('paybill')">Paybill 522522</button>
+          <button class="pay-tab-btn" data-tab="till" onclick="window.customerPortal.selectPaymentTab('till')">Till 8472910</button>
+          <button class="pay-tab-btn" data-tab="bank" onclick="window.customerPortal.selectPaymentTab('bank')">Bank Transfer</button>
+        </div>
+
+        <!-- STK Push Tab -->
+        <div class="pay-tab-content active" id="pay-content-stk">
+          <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">
+            Enter your Safaricom M-Pesa phone number. We will send an instant STK prompt to your phone. Simply enter your M-Pesa PIN to complete payment.
+          </p>
+          <div class="form-group">
+            <label class="form-label" for="stk-phone-input">Safaricom Phone Number</label>
+            <div style="display: flex; gap: 8px;">
+              <span style="display: flex; align-items: center; padding: 0 12px; background: #F1F4EE; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-weight: 600; font-size: 13px;">+254</span>
+              <input type="tel" id="stk-phone-input" class="form-control" placeholder="7XXXXXXXX" value="722849102">
+            </div>
+          </div>
+          <button id="btn-trigger-stk" class="btn btn-primary btn-block btn-lg" onclick="window.customerPortal.triggerSTKPush()">
+            Send M-Pesa STK Push Prompt
+          </button>
+          <div id="stk-status-indicator" style="display: none;"></div>
+        </div>
+
+        <!-- Paybill Tab -->
+        <div class="pay-tab-content" id="pay-content-paybill">
+          <div style="background: #F8FAFC; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 16px; font-size: 13px;">
+            <p>1. Open M-Pesa &rarr; Lipa na M-Pesa &rarr; <strong>Paybill</strong></p>
+            <p>2. Enter Business Number: <strong>522522</strong></p>
+            <p>3. Enter Account Number: <strong>CUST-001</strong> (or your Customer ID)</p>
+            <p>4. Enter Amount and your PIN.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="paybill-code-input">Enter Received M-Pesa Transaction Code</label>
+            <input type="text" id="paybill-code-input" class="form-control" placeholder="e.g. QHK82910KP">
+          </div>
+          <button class="btn btn-primary btn-block" onclick="window.customerPortal.submitManualCode('paybill')">
+            Submit M-Pesa Code for Verification
+          </button>
+        </div>
+
+        <!-- Till Tab -->
+        <div class="pay-tab-content" id="pay-content-till">
+          <div style="background: #F8FAFC; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 16px; font-size: 13px;">
+            <p>1. Open M-Pesa &rarr; Lipa na M-Pesa &rarr; <strong>Buy Goods and Services</strong></p>
+            <p>2. Enter Till Number: <strong>8472910</strong> (CrownBins Solutions Kenya)</p>
+            <p>3. Enter Amount and your PIN.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="till-code-input">Enter Received M-Pesa Transaction Code</label>
+            <input type="text" id="till-code-input" class="form-control" placeholder="e.g. QHL41908ZB">
+          </div>
+          <button class="btn btn-primary btn-block" onclick="window.customerPortal.submitManualCode('till')">
+            Submit Till Transaction Code
+          </button>
+        </div>
+
+        <!-- Bank Tab -->
+        <div class="pay-tab-content" id="pay-content-bank">
+          <div style="background: #F8FAFC; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 16px; font-size: 13px;">
+            <p><strong>Bank:</strong> Equity Bank Kenya (or any Kenyan Bank)</p>
+            <p><strong>Account Name:</strong> CrownBins Solutions Kenya Ltd</p>
+            <p><strong>Account Number:</strong> 0180293847192</p>
+            <p><strong>Branch:</strong> Supreme Centre, Nairobi</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bank-code-input">Enter Bank Transfer Ref / Cheque No.</label>
+            <input type="text" id="bank-code-input" class="form-control" placeholder="e.g. FT2623098716 or Cheque #">
+          </div>
+          <button class="btn btn-primary btn-block" onclick="window.customerPortal.submitManualCode('bank')">
+            Submit Bank Reference
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Admin Zoho-Style Invoice Generator Modal (Requirements 2.8) -->
+  <div class="modal-backdrop" id="admin-invoice-modal">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Create Official Invoice (Zoho-Style Layout)</h3>
+          <span style="font-size: 12px; color: var(--color-text-muted);">Invoice Number: <strong id="new-inv-number-display" style="color: var(--color-green-primary);">INV-2026-0843</strong> &bull; Currency: KES</span>
+        </div>
+        <button class="modal-close-btn" onclick="window.adminPortal.closeInvoiceModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="invoice-customer-select">Select Customer *</label>
+            <select id="invoice-customer-select" class="form-select" onchange="window.adminPortal.onCustomerSelectChange(this.value)">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inv-field-due-date">Invoice Due Date *</label>
+            <input type="date" id="inv-field-due-date" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Customer Email</label>
+            <input type="email" id="inv-field-email" class="form-control" readonly>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone (WhatsApp / SMS Delivery)</label>
+            <input type="text" id="inv-field-phone" class="form-control" readonly>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Collection Address / Estate</label>
+          <input type="text" id="inv-field-address" class="form-control" readonly>
+        </div>
+
+        <!-- Line Item Table -->
+        <h4 style="font-size: 14px; font-weight: 700; margin: 20px 0 10px 0; text-transform: uppercase; color: var(--color-charcoal-dark);">Line Items & Bag Allocation</h4>
+        <div style="background: #F8FAFC; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 20px;">
+          <div class="form-row-3">
+            <div class="form-group">
+              <label class="form-label">Bag Type / Quality</label>
+              <select id="inv-field-bag-type" class="form-select" onchange="window.adminPortal.recalculateInvoiceTotals()">
+                <option value="green">Organic Green Bag (Premium)</option>
+                <option value="blue">Standard Blue Bag (Durable)</option>
+                <option value="black">Economy Black Bag (General)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bag Quantity / Mo</label>
+              <input type="number" id="inv-field-bag-qty" class="form-control" value="8">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subscription Months</label>
+              <select id="inv-field-months" class="form-select" onchange="window.adminPortal.recalculateInvoiceTotals()">
+                <option value="3">3 Months (Quarterly)</option>
+                <option value="4">4 Months</option>
+                <option value="6">6 Months (Semi-Annual)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Monthly Rate (KES)</label>
+              <input type="number" id="inv-field-rate" class="form-control" value="1500" oninput="window.adminPortal.recalculateInvoiceTotals()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Discount (KES)</label>
+              <input type="number" id="inv-field-discount" class="form-control" value="0" oninput="window.adminPortal.recalculateInvoiceTotals()">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer;">
+              <input type="checkbox" id="inv-field-vat" onchange="window.adminPortal.recalculateInvoiceTotals()">
+              Include 16% VAT & KRA PIN breakdown (Commercial / Corporate clients)
+            </label>
+          </div>
+        </div>
+
+        <!-- Totals Calculation Card -->
+        <div class="inv-calc-summary-card">
+          <div class="inv-calc-row">
+            <span>Subtotal:</span>
+            <span id="inv-calc-subtotal">KES 4,500</span>
+          </div>
+          <div class="inv-calc-row">
+            <span>VAT (16%):</span>
+            <span id="inv-calc-vat">KES 0.00</span>
+          </div>
+          <div class="inv-calc-row total">
+            <span>Grand Total Due:</span>
+            <span id="inv-calc-total">KES 4,500</span>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+          <label class="form-label" for="inv-field-notes">Notes / Collection Terms</label>
+          <textarea id="inv-field-notes" class="form-control" rows="2">Garbage collection scheduled twice weekly (Tuesdays & Fridays). Bags delivered on 1st collection of month.</textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="window.adminPortal.saveInvoice(false)">Save as Draft</button>
+        <button class="btn btn-primary" onclick="window.adminPortal.saveInvoice(true)">Save & Send (WhatsApp / Email)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Admin Match Payment Modal -->
+  <div class="modal-backdrop" id="link-payment-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Reconcile Unmatched M-Pesa Payment</h3>
+          <span style="font-size: 12px; color: var(--color-text-muted);">Match Code: <strong id="link-pay-code" style="color: var(--color-green-primary);">QHL58920KA</strong> &bull; Amount: <strong id="link-pay-amount">KES 4,500</strong></span>
+        </div>
+        <button class="modal-close-btn" onclick="window.adminPortal.closeLinkPaymentModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">
+          Payer Name: <strong id="link-pay-sender">Grace Muthoni (+254 729 481 002)</strong>
+        </p>
+        <div class="form-group">
+          <label class="form-label" for="link-pay-customer-select">Select Customer Account to Link Payment</label>
+          <select id="link-pay-customer-select" class="form-select">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+        <p style="font-size: 12px; color: var(--color-green-primary);">
+          Linking this payment will automatically settle the customer's pending invoice, clear their account balance, and dispatch a WhatsApp receipt.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="window.adminPortal.closeLinkPaymentModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="window.adminPortal.confirmPaymentLink()">Confirm & Reconcile Payment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Customer Raise Complaint Modal -->
+  <div class="modal-backdrop" id="complaint-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Raise Service Ticket / Complaint</h3>
+        <button class="modal-close-btn" onclick="window.customerPortal.closeComplaintModal()">&times;</button>
+      </div>
+      <form onsubmit="window.customerPortal.submitComplaintForm(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="complaint-category-select">Category</label>
+            <select id="complaint-category-select" class="form-select">
+              <option value="Missed Pickup">Missed Collection Pickup</option>
+              <option value="Damaged Bin / Bags">Damaged Bin / Missing Bag Delivery</option>
+              <option value="Billing Issue / Overpayment">Billing Issue / Overpayment Claim</option>
+              <option value="Route Timing">Route Timing Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="complaint-subject-input">Subject Summary *</label>
+            <input type="text" id="complaint-subject-input" class="form-control" placeholder="e.g. Bags not collected on Friday morning" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="complaint-details-input">Detailed Description *</label>
+            <textarea id="complaint-details-input" class="form-control" rows="4" placeholder="Please provide specific details so our operations team can resolve promptly..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.customerPortal.closeComplaintModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Ticket</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Special Pickup Modal -->
+  <div class="modal-backdrop" id="special-pickup-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Request Special / Extra Bags Pickup</h3>
+        <button class="modal-close-btn" onclick="window.customerPortal.closeSpecialPickupModal()">&times;</button>
+      </div>
+      <form onsubmit="window.customerPortal.submitSpecialPickup(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="pickup-date-input">Preferred Collection Date *</label>
+            <input type="date" id="pickup-date-input" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pickup-bags-input">Number of Extra Bags</label>
+            <select id="pickup-bags-input" class="form-select">
+              <option value="2">2 Extra Bags</option>
+              <option value="4">4 Extra Bags</option>
+              <option value="6">6 Extra Bags</option>
+              <option value="10">10+ Heavy / Bulk Waste</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pickup-notes-input">Notes (Yard waste, furniture, renovation debris)</label>
+            <textarea id="pickup-notes-input" class="form-control" rows="3" placeholder="Describe the extra waste to be collected..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.customerPortal.closeSpecialPickupModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Schedule Extra Pickup</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Expansion Area Vote Modal -->
+  <div class="modal-backdrop" id="expansion-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Request Service in Your Town / Estate</h3>
+        <button class="modal-close-btn" onclick="window.app.closeExpansionVoteModal()">&times;</button>
+      </div>
+      <form onsubmit="window.app.submitExpansionRequest(event)">
+        <div class="modal-body">
+          <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">
+            We regularly launch new garbage truck routes based on community interest. Tell us where you are located!
+          </p>
+          <div class="form-group">
+            <label class="form-label" for="expansion-area-name">Town / Estate Name *</label>
+            <input type="text" id="expansion-area-name" class="form-control" placeholder="e.g. Kitengela, Rongai, Ngong, Naivasha" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="expansion-phone">Your Phone / WhatsApp Number</label>
+            <input type="tel" id="expansion-phone" class="form-control" placeholder="+254 7XX XXX XXX">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeExpansionVoteModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Expansion Vote</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/pdf-generator.js"></script>
+  <script src="js/portal.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
